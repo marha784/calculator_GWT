@@ -1,0 +1,148 @@
+/** Add css rules here for your application. */
+
+/** Example rules used by the template application (remove for your app) */
+
+#container{
+	width: 100%; 
+	height: 100%;
+	
+}
+
+.main{
+	background:#87CEFA;
+	border-collapse: collapse;
+	margin: 0 auto;
+	box-shadow: 18px 3px 77px -22px rgba(0,0,0,0.75);
+}
+.numTable{
+	border: 0; 
+	background:#87CEFA;
+	left:32px; 
+	border-collapse: collapse;
+	white-space: nowrap;
+	
+}
+
+.zero{
+  border-collapse: collapse;
+  color: white;
+  text-shadow: -1px -1px 0px;  
+  width:200px;
+  height:100px;
+  display:block;
+  font-family:"Code Light";
+  font-size:50px;
+  white-space: nowrap;
+  text-decoration:none;
+  text-align:center;
+  padding-top:0px;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+  cursor:pointer;
+  border: none;
+  background:#008CBA;
+ 
+}
+
+.equals{
+  border-collapse: collapse;
+  color: white;
+  text-shadow: -1px -1px 0px;  
+  width:100px;
+  height:100px;
+  display:block;
+  font-family:"Code Light";
+  font-size:50px;
+  white-space: nowrap;
+  text-decoration:none;
+  text-align:center;
+  padding-top:0px;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+  cursor:pointer;
+  border: none;
+  background:#FFA07A;
+	
+}
+
+
+.operandTable{
+	background: #87CEFA;
+	left:32px; 
+	border-collapse: collapse;
+}
+
+#calc{
+	border-collapse: collapse;
+}
+
+.display{
+	
+  width:397px;
+  height:200px;
+  color:white;
+}
+
+.display.gwt-TextBox{
+	font-family:"Yu Gothic Light";
+	font-size:50px;
+    font-weight:bold;
+    border-color:#87CEFA;
+    background:#87CEFA;
+    text-align:right;
+   
+}
+
+button.gwt-Button{
+  
+  border-collapse: collapse;
+  color: white;
+  width:100px;
+  height:100px;
+  display:block;
+  font-family:"Yu Gothic Light";
+  font-size:50px;
+  white-space: nowrap;
+  text-decoration:none;
+  text-align:center;
+  padding-top:0px;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+  cursor:pointer;
+  border: none;
+  background: #008CBA;
+ 
+}
+
+button.gwt-Button:active {
+  top:3px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
+}
+
+button.gwt-Button:hover {
+ 
+ background:grey;
+}
+
+.zero:active {
+  top:3px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
+}
+
+.zero:hover {
+ 
+ background:grey;
+}
+.equals:active {
+  top:3px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
+}
+
+.equals:hover {
+ 
+ background:grey;
+}
+
