@@ -3,24 +3,55 @@
 /** Example rules used by the template application (remove for your app) */
 
 #container{
-	width: 100%; 
+	width: 90%; 
 	height: 100%;
-	
+	background-image: url("https://hdwallsource.com/img/2014/9/free-blurry-wallpaper-35108-35912-hd-wallpapers.jpg");
+    background-repeat: no-repeat;
+}
+
+#calc{
+	width:40%; 
+	height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    float: left;
+    padding-left: 20%;
+}
+
+#result{
+	width:30%; 
+	height: 100%;
+	margin: 0;
+    padding: 0;
+    border: 0;
+    float: left;
 }
 
 .main{
 	background:#87CEFA;
 	border-collapse: collapse;
-	margin: 0 auto;
 	box-shadow: 18px 3px 77px -22px rgba(0,0,0,0.75);
 }
+
+.resultPanel{
+	
+	background:#87CEFA;
+	border-collapse: collapse;
+	font-family:"Yu Gothic Light";
+	font-size:20px;
+	color:white; 
+	
+}
+
+
+
 .numTable{
 	border: 0; 
 	background:#87CEFA;
 	left:32px; 
 	border-collapse: collapse;
 	white-space: nowrap;
-	
 }
 
 .zero{
@@ -74,9 +105,7 @@
 	border-collapse: collapse;
 }
 
-#calc{
-	border-collapse: collapse;
-}
+
 
 .display{
 	
@@ -87,7 +116,7 @@
 
 .display.gwt-TextBox{
 	font-family:"Yu Gothic Light";
-	font-size:50px;
+	font-size:34px;
     font-weight:bold;
     border-color:#87CEFA;
     background:#87CEFA;
@@ -118,7 +147,6 @@ button.gwt-Button{
 }
 
 button.gwt-Button:active {
-  top:3px;
   box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
 }
 
@@ -128,7 +156,6 @@ button.gwt-Button:hover {
 }
 
 .zero:active {
-  top:3px;
   box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
 }
 
@@ -137,7 +164,7 @@ button.gwt-Button:hover {
  background:grey;
 }
 .equals:active {
-  top:3px;
+
   box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
 }
 

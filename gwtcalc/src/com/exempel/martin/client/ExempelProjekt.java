@@ -1,14 +1,22 @@
 package com.exempel.martin.client;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import java_cup.internal_error;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -24,14 +32,19 @@ public class ExempelProjekt implements EntryPoint {
 	private Label header = new Label();
 	private TextBox displayArea = new TextBox();
 	private FlexTable numberTable = new FlexTable();
+	private FlexTable resultTable = new FlexTable(); 
 	private FlexTable operandTable = new FlexTable();
 	private VerticalPanel mainPanel = new VerticalPanel();
+	private VerticalPanel resultPanel = new VerticalPanel();
 	private String[] syms = new String[] { "/", "*", "-", "+", "=" };
 	private String[] clears = new String[] { "AC", "+/-", "%" };
 	private String[] botRow = new String[] { "0", "." };
 	private Button btn;
-    private String equation=""; 
-    
+    private String equation="";
+	private String number="";
+	private ArrayList<String> numberList = new ArrayList<String>(); 
+	private ArrayList<String> operandList = new ArrayList<String>(); 
+	
 	public void onModuleLoad() {
 		
 		
@@ -49,7 +62,8 @@ public class ExempelProjekt implements EntryPoint {
                
 					@Override
 					public void onClick(ClickEvent event) {
-						addToDisplay(value);	
+						addToDisplay(value);
+						displayArea.setFocus(true);
 					}
 					
 				}); 	
@@ -64,7 +78,8 @@ public class ExempelProjekt implements EntryPoint {
                
 					@Override
 					public void onClick(ClickEvent event) {
-						addToDisplay(value);	
+						addToDisplay(value);
+						displayArea.setFocus(true);
 					}
 					
 				}); 	
@@ -82,6 +97,7 @@ public class ExempelProjekt implements EntryPoint {
 					@Override
 					public void onClick(ClickEvent event) {
 						addToDisplay(value);	
+						displayArea.setFocus(true);
 					}
 					
 				}); 	
@@ -102,6 +118,7 @@ public class ExempelProjekt implements EntryPoint {
 						@Override
 						public void onClick(ClickEvent event) {
 							addToDisplay(value);
+							displayArea.setFocus(true);
 							
 						}
 					});
@@ -117,6 +134,7 @@ public class ExempelProjekt implements EntryPoint {
 					@Override
 					public void onClick(ClickEvent event) {
 						addToDisplay(value);
+						displayArea.setFocus(true);
 						
 					}
 				});
@@ -204,7 +222,19 @@ public class ExempelProjekt implements EntryPoint {
  			
  		}));
          
-        
+         displayArea.addKeyDownHandler(new KeyDownHandler() {
+
+        	    @Override
+        	    public void onKeyDown(KeyDownEvent event) {
+        	     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+     
+        	                doMath();
+        	           }
+        	    }
+        	});
+         
+         
+      
         
 		numberTable.setWidth(COMMON_WIDTH);
 		numberTable.getFlexCellFormatter().setColSpan(3,0,2);
@@ -224,17 +254,102 @@ public class ExempelProjekt implements EntryPoint {
 		displayArea.addStyleName("display");
 		numberTable.addStyleName("numTable");
 		operandTable.addStyleName("operandTable");
-		
+		setupResultTable();
+	
 		// add the mainPanel to the page
 		RootPanel.get("calc").add(mainPanel);
+		RootPanel.get("result").add(resultPanel);
+	}
+
+	private void setupResultTable() {
+		
+		resultTable.setWidth(COMMON_WIDTH);	
+		resultPanel.setStylePrimaryName("resultPanel");
+		
+	
+	}
+	
+	private void updateResultTable(String string) {
+		
+		  int row = resultTable.getRowCount();
+		  resultPanel.add(resultTable);
+		  resultTable.setText(row, 0, string);
+		  resultTable.getCellFormatter().addStyleName(row, 0, "resultPanel");
+		  
+		  
 	}
 
 	private void addToDisplay(String addText) 
 	{
 		
-		equation+=addText; 
-		displayArea.setText(equation);
-
+		if(addText.matches("[0-9]")||addText.equals(".")) 
+		{
+		number+=addText;
+		displayArea.setText(number);
+		} 
+		
+		else if(addText.matches("[/,+,*,%,-]")) 
+		{
+		displayArea.setText("");
+		  if(number.length()==0)
+		  {
+			 //do something  
+		  }
+		  if(number.length()!=0)
+		  {
+		  numberList .add(number);
+		  operandList.add(addText); 
+		  number=""; 
+		  }
+		}
+		else if(addText.equals("AC"))
+		{
+			number=""; 
+			operandList.clear(); 
+			numberList.clear(); 
+			displayArea.setText("");
+		}
+		else if(addText.equals("+/-")){
+			number="-"+number; 
+			displayArea.setText(number);
+		}
+		else if(addText.equals("=")) {
+			
+			doMath(); 
+			
+		}
+	}
+	
+	public void doMath() {
+		numberList .add(number);
+		number=""; 
+		String number1 = numberList.get(0); 
+		String number2 = numberList.get(1); 
+		String operand = operandList.get(0);
+		String result="";
+		String output="";
+		
+		if(!number1.contains(".")&&!number2.contains(".")) 
+		{
+		Calculation calculation = new Calculation(Integer.parseInt(number1),operand,
+		Integer.parseInt(number2)); 
+		
+	    result= calculation.calculate(); 
+		output= number1+operand+number2+"="+result; 
+		}
+		if(number1.contains(".")||number2.contains(".")) 
+		{
+		Calculation calculationD = new Calculation(Double.parseDouble(number1),operand,
+		Double.parseDouble(number2)); 
+		result= calculationD.calculateDouble(); 
+		output= number1+operand+number2+"="+result; 
+		}
+		
+		updateResultTable(output);
+		displayArea.setText(result); 
+		operandList.clear(); 
+		numberList.clear(); 
+		
 	}
 	
 	/*
