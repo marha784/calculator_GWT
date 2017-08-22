@@ -10,81 +10,78 @@ public class Calculation {
 	private int number2;
 	private String result;
 	private double double1;
-	private double double2; 
+	private double double2;
+	private int valueType; 
 
 	public Calculation(int number1,String operand, int number2)
 	{
 		this.number1=number1; 
 		this.operand=operand; 
 		this.number2=number2; 
+		valueType=1; 
 	}
 	
 	public Calculation(double double1,String operand, double double2)
 	{
 		this.double1=double1;  
 		this.operand=operand; 
-		this.double2=double2; 
+		this.double2=double2;
+		valueType=0; 
 	}
 	
 	
-	public String calculate() 
+   	public String calculate() 
 	{
 		
 		if(operand.equals("+")) 
 		{	
-			
-		   result= add(); 
+			if(valueType==1) 
+			{
+		    result= add(); 	
+			}
+			else
+		    result= addDouble(); 
 		}
-		if(operand.equals("-")) 
+		else if(operand.equals("-")) 
 		{	
+			if(valueType==1) 
+		    {
 			result=subtract(); 
-		}
-		if(operand.equals("*"))
-		{	
-			result=multiply(); 
-		}
-		if(operand.equals("/"))
-		{	
-			result=divide(); 
-		}
-		if(operand.equals("%"))
-		{	
-			result=modulo(); 
-		}
-		
-		return result;	
-		
-	}
-	
-	public String calculateDouble() 
-	{
-		
-		if(operand.equals("+")) 
-		{	
-			
-		   result= addDouble(); 
-		}
-		if(operand.equals("-")) 
-		{	
+		    }
+			else
 			result=subtractDouble(); 
 		}
-		if(operand.equals("*"))
+		else if(operand.equals("*"))
 		{	
+			if(valueType==1) 
+		    {
+			result=multiply(); 
+		    }
+			else
 			result=multiplyDouble(); 
 		}
-		if(operand.equals("/"))
+		else if(operand.equals("/"))
 		{	
+			if(valueType==1) 
+		    {
+			result=divide(); 
+		    }
+			else
 			result=divideDouble(); 
 		}
-		if(operand.equals("%"))
+		else if(operand.equals("%"))
 		{	
+			if(valueType==1) 
+		    {
+			result=modulo(); 
+		    }
+			else
 			result=moduloDouble(); 
 		}
 		
 		return result;	
 		
 	}
-	
 	
 
 	public String add() {
@@ -97,12 +94,11 @@ public class Calculation {
 		 return result=Integer.toString(number1*number2); 
 	}
 	public String divide() {
-		if(number2==0)
-		{
-		result="FEL"; 	
-		}
-		else
+		
 		result=Double.toString(((double)number1)/((double)number2)); 
+		if(result.equals("Infinity")) {
+			result="FEL"; 
+		}
 		return result; 
 	}
 	
@@ -116,12 +112,17 @@ public class Calculation {
 	public String multiplyDouble() {
 		 return result=Double.toString(double1*double2); 
 	}
-	public String divideDouble() {
+	public String divideDouble() 
+	{
 		
 		result=Double.toString(double1/double2); 
+		if(result.equals("Infinity")) {
+			result="FEL"; 
+		}
 		return result; 
 	}
-	public String modulo() {
+	public String modulo() 
+	{
 		 return result=Integer.toString(number1%number2); 
 	}
 	
