@@ -27,6 +27,7 @@ public class CalculationHandler{
 				Calculation calculation = new Calculation(
 						Double.parseDouble(first), value,
 						Double.parseDouble(second));
+				
 				answer = calculation.calculate();
 				numbers.remove(first);
 				numbers.remove(second);
@@ -116,7 +117,7 @@ public class CalculationHandler{
 		}
 		removeObject(operands, "%");
 
-		if (numbers.get(0).equals("Infinity") || numbers.get(0).equals("NaN")) {
+		if (numbers.get(0).equals("Infinity") || numbers.get(0).equals("-Infinity")) {
 			numbers.set(0, "FEL");
 		}
 		return numbers.get(0);
@@ -148,7 +149,10 @@ public class CalculationHandler{
 
 		numberList.add("40");
 		operandList.add("/");
-		numberList.add("30.3");
+		numberList.add("0");
+		operandList.add("+");
+		numberList.add("5");
+		
 		
 		CalculationHandler sort = new CalculationHandler(numberList, operandList);
 		System.out.println(sort.getEquationResult());

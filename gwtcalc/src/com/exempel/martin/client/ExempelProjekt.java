@@ -278,7 +278,10 @@ public class ExempelProjekt implements EntryPoint {
 			numberList.clear();
 			displayArea.setText("");
 		} else if (addText.equals("+/-")) {
+			if(Integer.parseInt(number)>0) 
+			{
 			number = "-" + number;
+			}
 			displayArea.setText(number);
 		} else if (addText.equals("=")) {
 
@@ -291,9 +294,6 @@ public class ExempelProjekt implements EntryPoint {
 
 		numberList.add(number);
 		number = "";
-		String number1 = numberList.get(0);
-		String number2 = numberList.get(1);
-		String operand = operandList.get(0);
 		String result = "";
 		String output = "";
        

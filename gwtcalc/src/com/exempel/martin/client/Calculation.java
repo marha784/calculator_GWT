@@ -73,10 +73,6 @@ public class Calculation {
 	public String divide() {
 
 		result = Double.toString(((double) number1) / ((double) number2));
-		if (result.equals("Infinity")) {
-			result = "FEL";
-		}
-
 		return result;
 	}
 
@@ -95,9 +91,6 @@ public class Calculation {
 	public String divideDouble() {
 
 		result = Double.toString(double1 / double2);
-		if (result.equals("Infinity")) {
-			result = "FEL";
-		}
 		return result;
 	}
 
