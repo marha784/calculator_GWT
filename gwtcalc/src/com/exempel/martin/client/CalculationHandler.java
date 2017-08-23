@@ -5,11 +5,11 @@ import java.util.Collections;
 public class CalculationHandler{
 
 	private ArrayList<String> numbers;
-	private ArrayList<String> operands;
+	private ArrayList<String> operators;
 
-	public CalculationHandler(ArrayList<String> numbers, ArrayList<String> operands) {
+	public CalculationHandler(ArrayList<String> numbers, ArrayList<String> operators) {
 		this.numbers = numbers;
-		this.operands = operands;
+		this.operators = operators;
 
 	}
 
@@ -18,7 +18,7 @@ public class CalculationHandler{
 		int i = 0;
 		String string = "";
 
-		for (String value : operands) {
+		for (String value : operators) {
 			String answer = "";
 			if (value.equals("/")) {
 				System.out.println(i);
@@ -36,11 +36,11 @@ public class CalculationHandler{
 			}
 			i++;
 		}
-		removeObject(operands, "/");
+		removeObject(operators, "/");
 
 		i = 0;
 		System.out.println();
-		for (String value : operands) {
+		for (String value : operators) {
 			String answer = "";
 			if (value.equals("*")) {
 				String first = numbers.get(i);
@@ -56,10 +56,10 @@ public class CalculationHandler{
 			}
 			i++;
 		}
-		removeObject(operands, "*");
+		removeObject(operators, "*");
 
 		i = 0;
-		for (String value : operands) {
+		for (String value : operators) {
 			String answer = "";
 			if (value.equals("-")) {
 				String first = numbers.get(i);
@@ -75,10 +75,10 @@ public class CalculationHandler{
 			}
 			i++;
 		}
-		removeObject(operands, "-");
-		System.out.println(operands);
+		removeObject(operators, "-");
+		System.out.println(operators);
 		i = 0;
-		for (String value : operands) {
+		for (String value : operators) {
 			String answer = "";
 			if (value.equals("+")) {
 				String first = numbers.get(i);
@@ -94,10 +94,10 @@ public class CalculationHandler{
 			}
 			i++;
 		}
-		removeObject(operands, "+");
+		removeObject(operators, "+");
 
 		i = 0;
-		for (String value : operands) {
+		for (String value : operators) {
 			String answer = "";
 			if (value.equals("%")) {
 				String first = numbers.get(i);
@@ -115,7 +115,7 @@ public class CalculationHandler{
 			}
 			i++;
 		}
-		removeObject(operands, "%");
+		removeObject(operators, "%");
 
 		if (numbers.get(0).equals("Infinity") || numbers.get(0).equals("-Infinity")) {
 			numbers.set(0, "FEL");
@@ -127,9 +127,9 @@ public class CalculationHandler{
 		String string = "";
 		ArrayList<String> stringList = new ArrayList<String>();
 
-		for (int i = 0; i < operands.size(); i++) {
+		for (int i = 0; i < operators.size(); i++) {
 			String one = numbers.get(i);
-			String two = operands.get(i);
+			String two = operators.get(i);
 			string += one + two;
 		}
 		string += numbers.get(numbers.size() - 1) + "=";
@@ -171,6 +171,6 @@ public class CalculationHandler{
 	}
 
 	public ArrayList<String> getOperands() {
-		return operands;
+		return operators;
 	}
 }

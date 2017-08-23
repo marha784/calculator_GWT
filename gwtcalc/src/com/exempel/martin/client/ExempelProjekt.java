@@ -27,7 +27,7 @@ public class ExempelProjekt implements EntryPoint {
 	private FlexTable operandTable = new FlexTable();
 	private VerticalPanel mainPanel = new VerticalPanel();
 	private VerticalPanel resultPanel = new VerticalPanel();
-	private String[] operand = new String[]{"/", "*", "-", "+", "="};
+	private String[] operators = new String[]{"/", "*", "-", "+", "="};
 	private String[] clears = new String[]{"AC", "+/-", "%"};
 	private String[] bottomRow = new String[]{"0", "."};
 	private Button btn;
@@ -159,46 +159,46 @@ public class ExempelProjekt implements EntryPoint {
 			}
 		}));
 
-		operandTable.setWidget(0, 3, new Button(operand[0], new ClickHandler() {
+		operandTable.setWidget(0, 3, new Button(operators[0], new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				addToDisplay(operand[0]);
+				addToDisplay(operators[0]);
 
 			}
 		}));
 
-		numberTable.setWidget(0, 3, new Button(operand[1], new ClickHandler() {
+		numberTable.setWidget(0, 3, new Button(operators[1], new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				addToDisplay(operand[1]);
+				addToDisplay(operators[1]);
 
 			}
 		}));
 
-		numberTable.setWidget(1, 3, new Button(operand[2], new ClickHandler() {
+		numberTable.setWidget(1, 3, new Button(operators[2], new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				addToDisplay(operand[2]);
+				addToDisplay(operators[2]);
 
 			}
 		}));
 
-		numberTable.setWidget(2, 3, new Button(operand[3], new ClickHandler() {
+		numberTable.setWidget(2, 3, new Button(operators[3], new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				addToDisplay(operand[3]);
+				addToDisplay(operators[3]);
 
 			}
 		}));
-		numberTable.setWidget(3, 2, new Button(operand[4], new ClickHandler() {
+		numberTable.setWidget(3, 2, new Button(operators[4], new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				addToDisplay(operand[4]);
+				addToDisplay(operators[4]);
 
 			}
 
